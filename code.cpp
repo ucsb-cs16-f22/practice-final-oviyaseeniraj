@@ -4,6 +4,7 @@
 // Only submit this file
 // See code.h for the descriptions of each problem
 #include "code.h"
+using namespace std;
 
 
 /* Problem 1: 10 pts */
@@ -74,11 +75,11 @@ bool isBalanced(std::string s){
    {
       if (s[i] == 'A')
       {
-         countA++;
+         countA = countA + 1;
       }
       else if (s[i] == 'B')
       {
-         countB++;
+         countB = countB + 1;
       }
    }
    if (countA == countB)
