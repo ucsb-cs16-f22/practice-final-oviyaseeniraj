@@ -36,50 +36,75 @@ TeaPacket* bestPacket(TeaPacket* head){
    //    if nextnode bigger send next Node recursivelty
    //    else set nextnode to curr node then send nextnode recursively
 
-   TeaPacket* currNode = head;
-   if (currNode == nullptr)
-   {
-      return 0;
-   }
-   if (currNode->next == nullptr)
-   {
-      return currNode;
-   }
+   // TeaPacket* currNode = head;
+   // if (currNode == nullptr)
+   // {
+   //    return 0;
+   // }
+   // if (currNode->next == nullptr)
+   // {
+   //    return currNode;
+   // }
 
-   int currValue = currNode->rarity * currNode->rating;
-   int nextValue = currNode->next->rarity * currNode->next->rating;
-   if (nextValue > currValue)
-   {
-      bestPacket(currNode->next);
-   }
-   else
-   {
-      currNode->next = currNode;
-      bestPacket(currNode->next);
-   }
+   // int currValue = currNode->rarity * currNode->rating;
+   // int nextValue = currNode->next->rarity * currNode->next->rating;
+   // if (nextValue > currValue)
+   // {
+   //    bestPacket(currNode->next);
+   // }
+   // else
+   // {
+   //    currNode->next = currNode;
+   //    bestPacket(currNode->next);
+   // }
 
    //check each node 1 by 1 against the next and have it go recursively through the list
    // take curr node, compare w bestpacket(nextnode) = gives best of two
 
-   if (currNode == nullptr)
+   // if (currNode == nullptr)
+   // {
+   //    return 0;
+   // }
+   // if (currNode->next == nullptr)
+   // {
+   //    return currNode;
+   // }
+
+   // int currValue = currNode->rarity * currNode->rating;
+   // int nextValue = bestPacket(currNode->next)->rarity * bestPacket(currNode->next)->rating;
+
+   // if (currValue > bestPacket(currNode->next)->rarity*bestPacket(currNode->next)->rating)
+   // {
+   //    return currNode;
+   // }
+   // else
+   // {
+   //    return bestPacket(currNode->next);
+   // }
+
+   TeaPacket* curr = head->next;
+   TeaPacket* nextNode = nullptr;
+   if (head == nullptr)
    {
       return 0;
    }
-   if (currNode->next == nullptr)
+   if(curr==nullptr)
    {
-      return currNode;
-   }
-
-   int currValue = currNode->rarity * currNode->rating;
-   int nextValue = bestPacket(currNode->next)->rarity * bestPacket(currNode->next)->rating;
-
-   if (currValue > bestPacket(currNode->next)->rarity*bestPacket(currNode->next)->rating)
-   {
-      return currNode;
+      return head;
    }
    else
    {
-      return bestPacket(currNode->next);
+      nextNode = bestPacket(curr);
+   }
+
+   int headValue = head->rarity * head->rating;
+   int nextValue = nextNode->rarity * nextNode->rating;
+   if (headValue > nextValue)
+   {
+      return head;
+   }
+   else{
+      return nextNode;
    }
 }
 
