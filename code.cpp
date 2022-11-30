@@ -9,10 +9,10 @@
 /* Problem 1: 10 pts */
 
 int max = 0;
-Node* biggestValue = nullptr;
+TeaPacket* biggestValue = nullptr;
 int numIterated = 0;
 TeaPacket* bestPacket(TeaPacket* head){
-   if (head==nullptr && numIterated = 0) //if list empty
+   if (head == nullptr && numIterated = 0) //if list empty
    {
       return 0;
    }
@@ -72,11 +72,11 @@ bool isBalanced(std::string s){
    int countB = 0;
    for (int i = 0; i < s.length(); i++)
    {
-      if (string[i] == 'A')
+      if (s[i] == 'A')
       {
          countA++;
       }
-      else if (string[i] == 'B')
+      else if (s[i] == 'B')
       {
          countB++;
       }
