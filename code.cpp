@@ -9,27 +9,54 @@ using namespace std;
 
 /* Problem 1: 10 pts */
 
-int max = 0;
-TeaPacket* biggestValue = nullptr;
-int numIterated = 0;
+// int max = 0;
+// TeaPacket* biggestValue = nullptr;
+// int numIterated = 0;
 TeaPacket* bestPacket(TeaPacket* head){
-   if (head == nullptr && numIterated = 0) //if list empty
+   // if (head == nullptr && numIterated = 0) //if list empty
+   // {
+   //    return 0;
+   // }
+   // else if (head == nullptr) //if reached end of list
+   // {
+   //    return biggestValue;
+   // }
+
+   // int value = head->rating * head->rarity;
+   // if (value > max) // if we find a biggestValue node
+   // {
+   //    biggestValue = head;
+   //    max = value;
+   // }
+   // numIterated++;
+   // bestPacket(head->next);
+
+   // if reached end of list, return currnode
+   // else, check if value is bigger than big node value - set currNode = biggestNode
+   //    if nextnode bigger send next Node recursivelty
+   //    else set nextnode to curr node then send nextnode recursively
+
+   TeaPacket* currNode = head;
+   if (currNode == nullptr)
    {
       return 0;
    }
-   else if (head == nullptr) //if reached end of list
+   if (currNode->next == nullptr)
    {
-      return biggestValue;
+      return currNode;
    }
 
-   int value = head->rating * head->rarity;
-   if (value > max) // if we find a biggestValue node
+   int currValue = currNode->rarity * currNode->rating;
+   int nextValue = currNode->next->rarity * currNode->next->rating;
+   if (nextValue > currValue)
    {
-      biggestValue = head;
-      max = value;
+      bestPacket(currNode->next);
    }
-   numIterated++;
-   bestPacket(head->next);
+   else
+   {
+      currNode->next = currNode;
+      bestPacket(currNode->next);
+   }
 }
 
 
@@ -40,7 +67,7 @@ Node* insert(Node* head, int value){
    Node* currNode = head;
    while (currNode != nullptr) // while we still have values
    {
-      Node* toInsert = nullptr; // creating node of given data
+      Node* toInsert = new Node(); // creating node of given data
       toInsert->data = value;
       if (currNode->next == nullptr) // if to be placed at end of list
       {
