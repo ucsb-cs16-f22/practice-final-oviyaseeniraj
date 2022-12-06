@@ -134,6 +134,7 @@ Node* insert(Node* head, int value){
  
    Node* newNode = new Node();
    newNode->data = value;
+   newNode->next = nullptr;
    
    if (value < head->data || head == nullptr) // edge case for if value has to go at very beginning 
    {
@@ -141,14 +142,13 @@ Node* insert(Node* head, int value){
       return newNode;
    }
    
-   if (head->next == nullptr) // edge case for inserting at end
+   else if (head->next == nullptr) // edge case for inserting at end
    {
       head->next = newNode;
-      newNode->next = nullptr;
       return head;
    }
 
-   if (value < head->next->data) // base case: found spot to insert in middle
+   else if (value < head->next->data) // base case: found spot to insert in middle
    {
       Node* temp = head->next;
       newNode->next = temp;
