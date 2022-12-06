@@ -112,6 +112,10 @@ TeaPacket* bestPacket(TeaPacket* head){
       return 0;
    }
    TeaPacket* nextBig = bestPacket(head->next);
+   if (nextBig == 0)
+   {
+      return head;
+   }
    if (nextBig->rarity * nextBig->rating > head->rarity * head->rating)
    {
       return nextBig;
