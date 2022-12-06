@@ -116,7 +116,10 @@ TeaPacket* bestPacket(TeaPacket* head){
    {
       return nextBig;
    }
-   return head;
+   else
+   {
+      return head;
+   }
 }
 
 
@@ -154,18 +157,18 @@ Node* insert(Node* head, int value){
 
    Node* newNode = new Node();
    newNode->data = value;
-
-   if (head->next == nullptr) // edge case for inserting at end
-   {
-      head->next = newNode;
-      newNode->next = nullptr;
-      return head;
-   }
    
    if (value < head->data) // edge case for if value has to go at very beginning 
    {
       newNode->next = head;
       return newNode;
+   }
+   
+   if (head->next == nullptr) // edge case for inserting at end
+   {
+      head->next = newNode;
+      newNode->next = nullptr;
+      return head;
    }
 
    if (value < head->next->data) // base case: found spot to insert in middle
