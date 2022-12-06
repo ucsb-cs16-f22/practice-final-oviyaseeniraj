@@ -82,30 +82,41 @@ TeaPacket* bestPacket(TeaPacket* head){
    //    return bestPacket(currNode->next);
    // }
 
-   TeaPacket* curr = head->next;
-   TeaPacket* nextNode = nullptr;
+   // TeaPacket* curr = head->next;
+   // TeaPacket* nextNode = nullptr;
+   // if (head == nullptr)
+   // {
+   //    return 0;
+   // }
+   // if(curr==nullptr)
+   // {
+   //    return head;
+   // }
+   // else
+   // {
+   //    nextNode = bestPacket(curr);
+   // }
+
+   // int headValue = head->rarity * head->rating;
+   // int nextValue = nextNode->rarity * nextNode->rating;
+   // if (headValue > nextValue)
+   // {
+   //    return head;
+   // }
+   // else{
+   //    return nextNode;
+   // }
+
    if (head == nullptr)
    {
       return 0;
    }
-   if(curr==nullptr)
+   TeaPacket* nextBig = bestPacket(head->next);
+   if (nextBig->rarity * nextBig->rating > head->rarity * head->rating)
    {
-      return head;
+      return nextBig;
    }
-   else
-   {
-      nextNode = bestPacket(curr);
-   }
-
-   int headValue = head->rarity * head->rating;
-   int nextValue = nextNode->rarity * nextNode->rating;
-   if (headValue > nextValue)
-   {
-      return head;
-   }
-   else{
-      return nextNode;
-   }
+   return head;
 }
 
 
@@ -113,32 +124,60 @@ TeaPacket* bestPacket(TeaPacket* head){
 /* Problem 2: 10 points*/
 
 Node* insert(Node* head, int value){
-   Node* currNode = head;
-   while (currNode != nullptr) // while we still have values
+   // Node* currNode = head;
+   // while (currNode != nullptr) // while we still have values
+   // {
+   //    Node* toInsert = new Node(); // creating node of given data
+   //    toInsert->data = value;
+   //    if (currNode->next == nullptr) // if to be placed at end of list
+   //    {
+   //       currNode->next == toInsert;
+   //    }
+   //    else if (currNode->data > value) // if to be placed before head
+   //    {
+   //       toInsert->next = head;
+   //       return toInsert;
+   //    }
+   //    else if (currNode->next->data > value) // 'normal' case, if to be placed at the next spot
+   //    {
+   //       Node* temp = currNode->next;
+   //       currNode->next = toInsert;
+   //       toInsert->next = temp;
+   //       return head;
+   //    }
+   //    else // if place not found yet
+   //    {
+   //       currNode = currNode->next;
+   //    }
+   // }
+   // return head;
+
+   Node* newNode = new Node();
+   newNode->data = value;
+
+   if (head->next == nullptr) // edge case for inserting at end
    {
-      Node* toInsert = new Node(); // creating node of given data
-      toInsert->data = value;
-      if (currNode->next == nullptr) // if to be placed at end of list
-      {
-         currNode->next == toInsert;
-      }
-      else if (currNode->data > value) // if to be placed before head
-      {
-         toInsert->next = head;
-         return toInsert;
-      }
-      else if (currNode->next->data > value) // 'normal' case, if to be placed at the next spot
-      {
-         Node* temp = currNode->next;
-         currNode->next = toInsert;
-         toInsert->next = temp;
-         return head;
-      }
-      else // if place not found yet
-      {
-         currNode = currNode->next;
-      }
+      Node* newNode = new Node();
+      newNode->data = value;
+      newNode->next = nullptr;
+      return head;
    }
+   
+   if (value < head->data) // edge case for if value has to go at very beginning 
+   {
+      newNode->next = head;
+      return newNode;
+   }
+
+   if (value < head->next->data) // base case: found spot to insert in middle
+   {
+      Node* temp = head->next;
+      head->next = newNode;
+      head->next->next = temp;
+      return head;
+   }
+   
+   insert(head->next, value);
    return head;
 }
 
