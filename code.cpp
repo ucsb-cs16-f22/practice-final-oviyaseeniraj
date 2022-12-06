@@ -131,34 +131,7 @@ TeaPacket* bestPacket(TeaPacket* head){
 /* Problem 2: 10 points*/
 
 Node* insert(Node* head, int value){
-   // Node* currNode = head;
-   // while (currNode != nullptr) // while we still have values
-   // {
-   //    Node* toInsert = new Node(); // creating node of given data
-   //    toInsert->data = value;
-   //    if (currNode->next == nullptr) // if to be placed at end of list
-   //    {
-   //       currNode->next == toInsert;
-   //    }
-   //    else if (currNode->data > value) // if to be placed before head
-   //    {
-   //       toInsert->next = head;
-   //       return toInsert;
-   //    }
-   //    else if (currNode->next->data > value) // 'normal' case, if to be placed at the next spot
-   //    {
-   //       Node* temp = currNode->next;
-   //       currNode->next = toInsert;
-   //       toInsert->next = temp;
-   //       return head;
-   //    }
-   //    else // if place not found yet
-   //    {
-   //       currNode = currNode->next;
-   //    }
-   // }
-   // return head;
-
+ 
    Node* newNode = new Node();
    newNode->data = value;
    
@@ -178,8 +151,8 @@ Node* insert(Node* head, int value){
    if (value < head->next->data) // base case: found spot to insert in middle
    {
       Node* temp = head->next;
+      newNode->next = temp;
       head->next = newNode;
-      head->next->next = temp;
       return head;
    }
    
