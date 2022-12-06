@@ -157,10 +157,9 @@ Node* insert(Node* head, int value){
 
    if (head->next == nullptr) // edge case for inserting at end
    {
-      Node* newNode = new Node();
-      newNode->data = value;
+      head->next = newNode;
       newNode->next = nullptr;
-      return;
+      return head;
    }
    
    if (value < head->data) // edge case for if value has to go at very beginning 
@@ -174,7 +173,7 @@ Node* insert(Node* head, int value){
       Node* temp = head->next;
       head->next = newNode;
       head->next->next = temp;
-      return;
+      return head;
    }
    
    insert(head->next, value);
